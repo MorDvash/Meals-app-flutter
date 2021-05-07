@@ -1,18 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import './catagoryMealsScreen.dart';
 
 class CatagoryItem extends StatelessWidget {
+  final String id;
   final String title;
   final Color color;
 
-  CatagoryItem(this.title, this.color);
+  CatagoryItem(this.id, this.title, this.color);
 
   void selectCatagory(BuildContext context) {
-    Navigator.of(context).push(CupertinoPageRoute(builder: (_) {
-      return CatagoryMealsScreen();
-    }));
+    Navigator.of(context)
+        .pushNamed('/catagory-meals', arguments: {'id': id, 'title': title});
   }
 
   @override

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CatagoryMealsScreen extends StatelessWidget {
+  static const routeName = '/catagory-meals';
+
   @override
   Widget build(BuildContext context) {
     final routeArgs =

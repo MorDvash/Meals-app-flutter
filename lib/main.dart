@@ -27,9 +27,12 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'RobotoCondensed',
                 fontWeight: FontWeight.bold,
               ))),
-      home: CatagoriesScreen(),
+      // home: CatagoriesScreen(),
+      //מאפשר לשנות את שם של ראווט של הhome
+      initialRoute: '/',
       routes: {
-        '/catagory-meals': (context) => CatagoryMealsScreen(),
+        '/': (context) => CatagoriesScreen(),
+        CatagoryMealsScreen.routeName: (context) => CatagoryMealsScreen(),
       },
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/pages/catagoryMealsScreen.dart';
 import 'package:meals_app/pages/mealDetalisScreen.dart';
+import 'package:meals_app/pages/tabsScreen.dart';
 
 import 'pages/catagoriesScreen.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       //מאפשר לשנות את שם של ראווט של הhome
       initialRoute: '/',
       routes: {
-        '/': (context) => CatagoriesScreen(),
+        '/': (context) => TabsScreen(),
         CatagoryMealsScreen.routeName: (context) => CatagoryMealsScreen(),
         MealDetailsScreen.routeName: (context) => MealDetailsScreen(),
       },

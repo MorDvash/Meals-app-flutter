@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '../pages/filtersScreen.dart';
 
 class MainDrawer extends StatelessWidget {
-  Widget bulidListTile(String title, IconData icon) {
+  Widget bulidListTile(String title, IconData icon, Function tapHandler) {
     return ListTile(
       leading: Icon(
         icon,
@@ -10,11 +11,12 @@ class MainDrawer extends StatelessWidget {
       title: Text(
         title,
         style: TextStyle(
-            fontFamily: 'RobotoCondensed',
-            fontSize: 24,
-            fontWeight: FontWeight.bold),
+          fontFamily: 'RobotoCondensed',
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
       ),
-      onTap: () {},
+      onTap: tapHandler,
     );
   }
 
@@ -39,8 +41,12 @@ class MainDrawer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          bulidListTile('Meals', Icons.restaurant),
-          bulidListTile('Filters', Icons.settings)
+          bulidListTile('Meals', Icons.restaurant, () {
+            Navigator.of(context).pushNamed('/');
+          }),
+          bulidListTile('Filters', Icons.settings, () {
+            Navigator.of(context).pushNamed(FiltersScreen.routeName);
+          })
         ],
       ),
     );

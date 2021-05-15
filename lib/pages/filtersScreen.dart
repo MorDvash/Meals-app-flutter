@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import '../widget/mainDrawer.dart';
 
 class FiltersScreen extends StatelessWidget {
   static const routeName = '/filters';
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('filter!!'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Filters'),
+      ),
+      drawer: MainDrawer(),
+      body: Center(
+        child: Text('filter!!'),
+      ),
     );
   }
 }

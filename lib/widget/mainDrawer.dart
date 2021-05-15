@@ -42,10 +42,11 @@ class MainDrawer extends StatelessWidget {
             height: 20,
           ),
           bulidListTile('Meals', Icons.restaurant, () {
-            Navigator.of(context).pushNamed('/');
+            //מוחק את הדף שבאנו ממנו
+            Navigator.of(context).pushReplacementNamed('/');
           }),
           bulidListTile('Filters', Icons.settings, () {
-            Navigator.of(context).pushNamed(FiltersScreen.routeName);
+            Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName);
           })
         ],
       ),

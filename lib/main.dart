@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:meals_app/catagoryData.dart';
+import 'package:meals_app/models/meals.dart';
 import './pages/catagoryMealsScreen.dart';
 import './pages/filtersScreen.dart';
 import './pages/mealDetalisScreen.dart';
@@ -10,7 +13,42 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegen': false,
+    'vegetarian': false,
+  };
+  List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoriteMeals = [];
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+      _availableMeals = DUMMY_MEALS.where((meal) {
+        if (_filters['gluten'] && !meal.isGlutenFree) {
+          return false;
+        }
+        if (_filters['lactose'] && !meal.isLactoseFree) {
+          return false;
+        }
+        if (_filters['vegen'] && !meal.isVegan) {
+          return false;
+        }
+        if (_filters['vegetarian'] && !meal.isVegetarian) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,10 +72,12 @@ class MyApp extends StatelessWidget {
       //מאפשר לשנות את שם של ראווט של הhome
       initialRoute: '/',
       routes: {
-        '/': (context) => TabsScreen(),
-        CatagoryMealsScreen.routeName: (context) => CatagoryMealsScreen(),
+        '/': (context) => TabsScreen(_favoriteMeals),
+        CatagoryMealsScreen.routeName: (context) =>
+            CatagoryMealsScreen(_availableMeals),
         MealDetailsScreen.routeName: (context) => MealDetailsScreen(),
-        FiltersScreen.routeName: (context) => FiltersScreen(),
+        FiltersScreen.routeName: (context) =>
+            FiltersScreen(_filters, _setFilters),
       },
       // onGenerateRoute: (settings) {
 

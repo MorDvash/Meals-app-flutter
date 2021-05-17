@@ -4,6 +4,9 @@ import '../widget/mainDrawer.dart';
 import './favoriteScreen.dart';
 
 class TabsScreen extends StatefulWidget {
+  final List favoriteMeals;
+
+  TabsScreen(this.favoriteMeals);
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
@@ -31,7 +34,7 @@ class _TabsScreenState extends State<TabsScreen> {
         ),
         drawer: MainDrawer(),
         body: TabBarView(
-          children: [CatagoriesScreen(), FavoriteScreen()],
+          children: [CatagoriesScreen(), FavoriteScreen(widget.favoriteMeals)],
         ),
       ),
     );
